@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
@@ -9,7 +9,12 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit  screen.</Text>
+      <Text>Home</Text>
+      <Text>Welcome to Expo Router!</Text>
+      <Text>To get started, edit app/index.tsx</Text>
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({});

@@ -1,11 +1,11 @@
 {
   "expo": {
+    "scheme" : "notes-app",
     "name": "notes-app",
     "slug": "notes-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
