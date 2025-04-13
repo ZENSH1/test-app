@@ -7,4 +7,5 @@ export default function RootLayout() {
     <Stack.Screen name="faq" options={{ title: "Frequently Asked Questions" }} />
     <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
   </Stack>;
+  
 }
