@@ -20,9 +20,13 @@ const Home = () => {
       <Text style={styles.text}>To get started, edit app/index.tsx</Text>
       </View>
       <Link href="/About">
-      Go to About
-        <View >
+        <View style={styles.button}>
           <Text style={{ color: "#fff" }}>Go to About</Text>
+        </View>
+      </Link>
+      <Link href="/faq">
+        <View style={styles.button}>
+          <Text style={{ color: "#fff" }}>Go to FAQ</Text>
         </View>
       </Link>
 
