@@ -1,11 +1,29 @@
 import { Stack } from "expo-router";
+import { useColorScheme } from "react-native";
+import {colors as Colors} from "../constants/colors";
 
 export default function RootLayout() {
-  return <Stack>
-    <Stack.Screen name="index" options={{ title: "Home" }} />
-    <Stack.Screen name="About" options={{ title: "About Us" }} />
-    <Stack.Screen name="faq" options={{ title: "Frequently Asked Questions" }} />
-    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme ?? "light"]; //obviously gotta be safe here
+  return <Stack
+  screenOptions={
+    {
+      headerStyle: {
+        backgroundColor: theme.navBackground,
+      },
+      headerTintColor: theme.text,
+      headerTitleStyle: {
+        fontWeight: "bold",
+        color: theme.title,
+      },
+      contentStyle: {
+        backgroundColor: theme.background,
+      },
+    }
+  }>
+    <Stack.Screen name="index" options={{ title: "Home", headerStyle: { backgroundColor: theme.navBackground } }} />
+    <Stack.Screen name="About" options={{ title: "About Us", headerStyle: { backgroundColor: theme.navBackground } }} />
+    <Stack.Screen name="faq" options={{ title: "Frequently Asked Questions", headerStyle: { backgroundColor: theme.navBackground } }} />
+   
   </Stack>;
-  
 }
