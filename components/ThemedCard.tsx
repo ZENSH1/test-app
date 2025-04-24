@@ -1,5 +1,5 @@
 import { StyleSheet, useColorScheme, View } from 'react-native'
-import { colors as Colors } from '../constants/Colors'
+import { Colors } from '../constants/Colors'
 
 import { ViewStyle } from 'react-native'
 
