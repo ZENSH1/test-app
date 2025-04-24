@@ -24,6 +24,8 @@ export default function RootLayout() {
     <Stack.Screen name="index" options={{ title: "Home", headerStyle: { backgroundColor: theme.navBackground } }} />
     <Stack.Screen name="About" options={{ title: "About Us", headerStyle: { backgroundColor: theme.navBackground } }} />
     <Stack.Screen name="faq" options={{ title: "Frequently Asked Questions", headerStyle: { backgroundColor: theme.navBackground } }} />
+    <Stack.Screen name="addNotes" options={{ title: "Add Notes", headerStyle: { backgroundColor: theme.navBackground } }} />
+    <Stack.Screen name="viewNotes" options={{ title: "View Notes", headerStyle: { backgroundColor: theme.navBackground } }} />
    
   </Stack>;
 }

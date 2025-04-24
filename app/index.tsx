@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View,Image } from "react-native";
-import icon from "../assets/images/react-logo.png";
 import {Link} from "expo-router";
+import { myImages } from "@/constants/images";
 
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
 
       <View style={styles.card}>
         <Image
-          source={icon}
+          source={myImages.icon}
           style={{ width: 100, height: 100, marginBottom: 20 }}
           resizeMode="contain"
         />
@@ -19,7 +19,7 @@ const Home = () => {
       <Text style={styles.text}>Welcome to Expo Router!</Text>
       <Text style={styles.text}>To get started, edit app/index.tsx</Text>
       </View>
-      <Link href="/About">
+      <Link href="/addNotes">
         <View style={styles.button}>
           <Text style={{ color: "#fff" }}>Go to About</Text>
         </View>
