@@ -22,7 +22,7 @@ const Home = () => {
         <ThemedText style={styles.text}>Welcome to Expo Router!</ThemedText>
         <ThemedText style={styles.text}>To get started, edit app/index.tsx</ThemedText>
       </ThemedView>
-      <Link href="/About">
+      <Link href="/(auth)/login">
         <ThemedText style={styles.button}>
           <ThemedText style={{ color: "#fff" }}>Go to About</ThemedText>
         </ThemedText>

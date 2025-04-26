@@ -12,12 +12,12 @@ const login = () => {
     
     <ThemedView style={styles.container}>
         <Spacer />
-        <ThemedText title={true}>Login</ThemedText>
+        <ThemedText title={true} style={styles.title}>Login</ThemedText>
         <Spacer size={10} />
-        <ThemedText>Login with your credentials</ThemedText>
+        <ThemedText >Login with your credentials</ThemedText>
         <Spacer size={50} />
         <Link href={'/register'}>
-          <ThemedText>Register</ThemedText>
+          <ThemedText style={{textAlign: 'center'}}>Register instead</ThemedText>
         </Link>
 
     </ThemedView>
@@ -26,4 +26,14 @@ const login = () => {
 
 export default login
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+    },
+})
