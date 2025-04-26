@@ -1,36 +1,40 @@
 import { StyleSheet, Text, View,Image } from "react-native";
 import {Link} from "expo-router";
 import { myImages } from "@/constants/images";
-
+import ThemedCard from "@/components/ThemedCard";
+import ThemedText from "@/components/ThemedText";
+import ThemedLogo from "@/components/ThemedLogo";
+import ThemedView from "@/components/ThemedView";
+import Spacer from "@/components/Spacer";
 
 const Home = () => {
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       
-      <Text style={styles.homeTitle}>Home</Text>
+      <ThemedText style={styles.homeTitle}>Home</ThemedText>
 
-      <View style={styles.card}>
-        <Image
-          source={myImages.icon}
+      <ThemedView style={styles.card}>
+        <ThemedLogo
           style={{ width: 100, height: 100, marginBottom: 20 }}
           resizeMode="contain"
         />
-        <Text style={styles.text}>This is a simple Expo Router app.</Text>
-      <Text style={styles.text}>Welcome to Expo Router!</Text>
-      <Text style={styles.text}>To get started, edit app/index.tsx</Text>
-      </View>
-      <Link href="/addNotes">
-        <View style={styles.button}>
-          <Text style={{ color: "#fff" }}>Go to About</Text>
-        </View>
+        <ThemedText style={styles.text}>This is a simple Expo Router app.</ThemedText>
+        <ThemedText style={styles.text}>Welcome to Expo Router!</ThemedText>
+        <ThemedText style={styles.text}>To get started, edit app/index.tsx</ThemedText>
+      </ThemedView>
+      <Link href="/About">
+        <ThemedText style={styles.button}>
+          <ThemedText style={{ color: "#fff" }}>Go to About</ThemedText>
+        </ThemedText>
       </Link>
-      <Link href="/faq">
-        <View style={styles.button}>
-          <Text style={{ color: "#fff" }}>Go to FAQ</Text>
-        </View>
+      <Spacer height={30}/>
+      <Link href="/Contact">
+        <ThemedText style={styles.button}>
+          <ThemedText style={{ color: "#fff" }}>Go to Contact</ThemedText>
+        </ThemedText>
       </Link>
 
-    </View>
+    </ThemedView>
   );
 }
 

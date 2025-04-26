@@ -1,0 +1,29 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { Link } from 'expo-router'
+
+//Themed Components
+import ThemedCard from '@/components/ThemedCard'
+import ThemedView from '@/components/ThemedView'
+import ThemedText from '@/components/ThemedText'
+import Spacer from '@/components/Spacer'
+const login = () => {
+  return (
+    
+    <ThemedView style={styles.container}>
+        <Spacer />
+        <ThemedText title={true}>Login</ThemedText>
+        <Spacer size={10} />
+        <ThemedText>Login with your credentials</ThemedText>
+        <Spacer size={50} />
+        <Link href={'/register'}>
+          <ThemedText>Register</ThemedText>
+        </Link>
+
+    </ThemedView>
+  )
+}
+
+export default login
+
+const styles = StyleSheet.create({})
