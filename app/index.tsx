@@ -24,9 +24,14 @@ const Home = () => {
         <ThemedText style={styles.text}>To get started, edit app/index.tsx</ThemedText>
       </ThemedCard>
       <Spacer height={20} />
-      <Link href="/(auth)/login" style={styles.button}>
+      <Link href="/login" style={styles.button}>
         <ThemedText style={styles.button}>
           Go to Login
+        </ThemedText>
+      </Link>
+      <Link href="/books" style={styles.button}>
+        <ThemedText style={styles.button}>
+          Go to Books
         </ThemedText>
       </Link>
       <Spacer height={30}/>

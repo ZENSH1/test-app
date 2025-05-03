@@ -1,13 +1,13 @@
-import { StyleSheet, useColorScheme, View } from 'react-native'
+import { StyleSheet, useColorScheme, View, ViewProps } from 'react-native'
 import { Colors } from '../constants/Colors'
 
 import { ViewStyle } from 'react-native'
 
-interface ThemedCardProps {
+interface ThemedCardProps extends ViewProps {
   style?: ViewStyle;
 }
 
-const ThemedCard = ({ style, ...props }: ThemedCardProps) => {
+const ThemedCard: React.FC<ThemedCardProps> = ({ style, ...props }) => {
   const colorScheme = useColorScheme()
   const theme = Colors[colorScheme || "light"] ?? Colors.light
 
