@@ -22,4 +22,12 @@ export const Colors = {
         iconColorFocused:'#007AFF',
         uiBackground: '#2f2b3d',
     },
+    mime:{
+        primary: '#FFD300',
+        secondary: '#1B1B1B',
+        background: '#FFFFFF',
+        text: '#000000',
+        textLight: '#666666',
+        border: '#DDDDDD',
+    }
 };

@@ -28,11 +28,6 @@ const Home = () => {
         </ThemedText>
       </Link>
       <Spacer height={30}/>
-      <Link href="/Contact">
-        <ThemedText style={styles.button}>
-          <ThemedText style={{ color: "#fff" }}>Go to Contact</ThemedText>
-        </ThemedText>
-      </Link>
 
     </ThemedView>
   );
