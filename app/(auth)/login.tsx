@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 import { Colors } from "@/constants/Colors";
@@ -8,7 +8,14 @@ import ThemedCard from "@/components/ThemedCard";
 import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
 import Spacer from "@/components/Spacer";
+import ThemedButton from "@/components/ThemedButton";
+
 const login = () => {
+
+  const handleSubmit = () => {
+    // Handle login logic here
+    console.log("Login button pressed");
+  }
   return (
     <ThemedView style={styles.container}>
       <Spacer />
@@ -18,10 +25,9 @@ const login = () => {
       <Spacer height={10} />
       <ThemedText>Login with your credentials</ThemedText>
       <Spacer height={10} />
-      <Pressable
-        style={({ pressed }) => [styles.btn, pressed && styles.pressed]}>
+      <ThemedButton onPress={handleSubmit}>
         <Text>Login</Text>
-      </Pressable>
+      </ThemedButton>
       <Spacer height={50} />
 
       <Link href={"/register"} style={{ padding: 10, borderColor: Colors.primary, borderWidth: 1, borderRadius: 5 }}>

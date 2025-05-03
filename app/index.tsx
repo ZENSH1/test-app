@@ -6,6 +6,7 @@ import ThemedText from "@/components/ThemedText";
 import ThemedLogo from "@/components/ThemedLogo";
 import ThemedView from "@/components/ThemedView";
 import Spacer from "@/components/Spacer";
+import { Colors } from "@/constants/Colors";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
       
       <ThemedText style={styles.homeTitle}>Home</ThemedText>
 
-      <ThemedView style={styles.card}>
+      <ThemedCard style={styles.card}>
         <ThemedLogo
           style={{ width: 100, height: 100, marginBottom: 20 }}
           resizeMode="contain"
@@ -21,10 +22,11 @@ const Home = () => {
         <ThemedText style={styles.text}>This is a simple Expo Router app.</ThemedText>
         <ThemedText style={styles.text}>Welcome to Expo Router!</ThemedText>
         <ThemedText style={styles.text}>To get started, edit app/index.tsx</ThemedText>
-      </ThemedView>
-      <Link href="/(auth)/login">
+      </ThemedCard>
+      <Spacer height={20} />
+      <Link href="/(auth)/login" style={styles.button}>
         <ThemedText style={styles.button}>
-          <ThemedText style={{ color: "#fff" }}>Go to About</ThemedText>
+          Go to Login
         </ThemedText>
       </Link>
       <Spacer height={30}/>
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
   },
   text: {
     fontSize: 20,
@@ -48,11 +49,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   button: {
-    backgroundColor: "#007AFF",
     padding: 10,
     borderRadius: 5,
-    minWidth: 100,
-    maxWidth: 200,
+    borderColor: Colors.primary,
+    borderWidth: 1,
   },
   homeTitle: {
     fontSize: 30,
@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   card: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,
     shadowColor: "#000",
