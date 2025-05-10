@@ -10,7 +10,7 @@ import { Colors } from "@/constants/Colors";
 
 const Home = () => {
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={styles.container} safe={true}>
       
       <ThemedText style={styles.homeTitle}>Home</ThemedText>
 
@@ -45,8 +45,6 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   text: {
     fontSize: 20,
