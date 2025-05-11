@@ -8,8 +8,14 @@ import ThemedView from '@/components/ThemedView';
 import ThemedText from '@/components/ThemedText';
 import Spacer from '@/components/Spacer';
 import ThemedButton from '@/components/ThemedButton';
+import ThemedTextInput from '@/components/ThemedTextInput';
 
 const Register = () => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
   const router = useRouter();
   const moveToLogin = () => {
     // Dismiss the current screen and navigate to the login screen
@@ -25,6 +31,48 @@ const Register = () => {
       <ThemedText title={true} style={styles.title}>Register</ThemedText>
       <Spacer height={10} />
       <ThemedText>Create an account to get started</ThemedText>
+      <Spacer height={10} />
+      <ThemedTextInput
+        placeholder="First Name"
+        value={firstName}
+        style={styles.input}
+        onChangeText={setFirstName}
+      />
+      <Spacer height={10} />
+      <ThemedTextInput
+        placeholder="Last Name"
+        style={styles.input}
+
+        value={lastName}
+        onChangeText={setLastName}
+        
+      />
+      <Spacer height={10} />
+      <ThemedTextInput
+        placeholder="Email"
+        style={styles.input}
+
+        value={email}
+        onChangeText={setEmail}
+      />
+      <Spacer height={10} />
+      <ThemedTextInput
+        placeholder="Password"
+        style={styles.input}
+
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <Spacer height={10} />
+      <ThemedTextInput
+        placeholder="Confirm Password"
+        style={styles.input}
+
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+      />
       <Spacer height={10} />
       <ThemedButton onPress={handleSubmit}>
         <ThemedText style={{ textAlign: 'center' }}>Register</ThemedText>
@@ -50,6 +98,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  input: {
+    width:"80%"
   },
   btn: {
     backgroundColor: Colors.primary,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 import { Colors } from "@/constants/Colors";
@@ -9,33 +9,68 @@ import ThemedView from "@/components/ThemedView";
 import ThemedText from "@/components/ThemedText";
 import Spacer from "@/components/Spacer";
 import ThemedButton from "@/components/ThemedButton";
+import ThemedTextInput from "@/components/ThemedTextInput";
 
 const login = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const handleSubmit = () => {
     // Handle login logic here
-    console.log("Login button pressed");
-  }
+    console.log("Login button pressed", email, password);
+  };
+
   return (
+    // Disable keyboard dismiss on press
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <ThemedView style={styles.container}>
       <Spacer />
+
       <ThemedText title={true} style={styles.title}>
         Login
       </ThemedText>
       <Spacer height={10} />
+
       <ThemedText>Login with your credentials</ThemedText>
       <Spacer height={10} />
+
+      <ThemedTextInput
+        placeholder="Email"
+        onChangeText={setEmail}
+        style={styles.input}
+        keyboardType="email-address"
+      />
+      <Spacer height={15} />
+      <ThemedTextInput
+        placeholder="Password"
+        style={styles.input}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <Spacer height={15} />
+
       <ThemedButton onPress={handleSubmit}>
         <Text>Login</Text>
       </ThemedButton>
+
       <Spacer height={50} />
 
-      <Link href={"/register"} style={{ padding: 10, borderColor: Colors.primary, borderWidth: 1, borderRadius: 5 }}>
+      <Link
+        href={"/register"}
+        style={{
+          padding: 10,
+          borderColor: Colors.primary,
+          borderWidth: 1,
+          borderRadius: 5,
+        }}
+      >
         <ThemedText style={{ textAlign: "center", fontSize: 19 }}>
           Register instead
         </ThemedText>
       </Link>
     </ThemedView>
+    </TouchableWithoutFeedback>
+
   );
 };
 
@@ -50,6 +85,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+  },
+  input: {
+    width: "80%",
   },
   btn: {
     backgroundColor: Colors.primary,
