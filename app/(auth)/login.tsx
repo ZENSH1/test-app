@@ -10,10 +10,12 @@ import ThemedText from "@/components/ThemedText";
 import Spacer from "@/components/Spacer";
 import ThemedButton from "@/components/ThemedButton";
 import ThemedTextInput from "@/components/ThemedTextInput";
+import useUser from "@/hooks/useUser";
 
 const login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const {user} = useUser();
 
   const handleSubmit = () => {
     // Handle login logic here
