@@ -8,8 +8,12 @@ import { Ionicons } from "@expo/vector-icons";
 const DashboardLayout = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme ?? "light"]; //obviously gotta be safe here
+  //Trying to make the profile tab be the initiale tab
+  // Some how not working.
+  // will try again later
   return (
     <Tabs
+      initialRouteName="profile"
       screenOptions={({ route }: { route: { name: string } }) => ({
         headerShown: false,
         tabBarStyle: {
@@ -19,44 +23,61 @@ const DashboardLayout = () => {
           borderRadius: 20,
           borderColor: theme.navBackground,
         },
-
         tabBarActiveTintColor: theme.iconColorFocused,
         tabBarInactiveTintColor: theme.iconColor,
         tabBarLabelStyle: {
           fontSize: 12,
         },
-
-        tabBarIcon: React.useCallback(({ color, size }:{color:string,size:number}) => {
-          const iconMap: Record<string, keyof typeof Ionicons.glyphMap> = {
-            profile: "person-outline",
-            create: "add-circle-outline",
-            books: "book-outline"
-          };
-          const iconName = iconMap[route.name as keyof typeof iconMap];
-          return iconName ? <Ionicons name={iconName} size={size} color={color} /> : null;
-        }, [route.name]),
       })}
     >
+      
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: React.useCallback(({ focused }: { focused: boolean }) => (
-            <Image
-              source={focused ? Images.logo_light : Images.logo_dark}
-              style={{ width: 24, height: 24 }}
-              resizeMode="contain"
-            />
-          ), [])
+          tabBarIcon: React.useCallback(
+            ({ focused }: { focused: boolean }) => (
+              <Image
+                source={focused ? Images.logo_light : Images.logo_dark}
+                style={{ width: 24, height: 24 }}
+                resizeMode="contain"
+              />
+            ),
+            []
+          ),
         }}
       />
       <Tabs.Screen
         name="create"
-        options={{ title: "Create", tabBarIconStyle: {} }}
+        options={{
+          title: "Create",
+          tabBarIcon: React.useCallback(
+            ({ focused }: { focused: boolean }) => (
+              <Ionicons
+                name="add"
+                size={24}
+                color={focused ? theme.iconColorFocused : theme.iconColor}
+              />
+            ),
+            []
+          ),
+        }}
       />
       <Tabs.Screen
         name="books"
-        options={{ title: "Books", tabBarIconStyle: {} }}
+        options={{
+          title: "Books",
+          tabBarIcon: React.useCallback(
+            ({ focused }: { focused: boolean }) => (
+              <Ionicons
+                name="book"
+                size={24}
+                color={focused ? theme.iconColorFocused : theme.iconColor}
+              />
+            ),
+            []
+          ),
+        }}
       />
     </Tabs>
   );

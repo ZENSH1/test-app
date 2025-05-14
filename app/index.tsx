@@ -25,12 +25,13 @@ const Home = () => {
       </ThemedCard>
       <Spacer height={20} />
       <Link href="/login" style={styles.button}>
-        <ThemedText style={styles.button}>
+        <ThemedText>
           Go to Login
         </ThemedText>
       </Link>
+      <Spacer height={20} />
       <Link href="/books" style={styles.button}>
-        <ThemedText style={styles.button}>
+        <ThemedText>
           Go to Books
         </ThemedText>
       </Link>
@@ -53,6 +54,8 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 20,
     borderRadius: 5,
     borderColor: Colors.primary,
     borderWidth: 1,

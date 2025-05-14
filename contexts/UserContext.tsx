@@ -35,13 +35,14 @@ export function UserProvider({ children }: UserProviderProps) {
 
   // Wrapped login function
   const login = asyncHandler(async (email: string, password: string) => {
-    var session = await account.get();
+    var session = await account.get().catch(() => null);
     if (session) {
       console.log("User is already logged in");
     } else {
       await account.createEmailPasswordSession(email, password);
       session = await account.get();
     }
+    console.log("User logged in", session.$id);
     setUser(session);
   });
 
