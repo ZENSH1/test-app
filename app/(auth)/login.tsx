@@ -19,7 +19,11 @@ const login = () => {
 
   const handleSubmit = async () => {
     // Handle login logic here
-    console.log("Login button pressed", email, password);
+    if(user){
+      console.log("User is already logged in", user.$id);
+      return;
+    }
+    console.log("Login button pressed", email, password, user);
     login(email,password);
   };
 
