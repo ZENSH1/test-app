@@ -15,11 +15,12 @@ import useUser from "@/hooks/useUser";
 const login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const {user} = useUser();
+  const {user,login} = useUser();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Handle login logic here
     console.log("Login button pressed", email, password);
+    login(email,password);
   };
 
   return (

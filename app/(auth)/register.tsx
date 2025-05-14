@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import { Colors } from '@/constants/Colors';
+import  useUser from '@/hooks/useUser';
 
 // Themed Components
 import ThemedView from '@/components/ThemedView';
@@ -16,15 +17,32 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
+  const { user, register } = useUser();
+
   const router = useRouter();
+  
+  
   const moveToLogin = () => {
     // Dismiss the current screen and navigate to the login screen
     router.dismissTo('/login');
   };
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Handle registration logic here
     console.log('Register button pressed');
+    if (password != confirmPassword) {
+      // Passwords do not match, handle error
+      console.log('Passwords do not match');
+      return;
+    }
+
+    // Call the register function from useUser
+    try{
+      register(email, password);
+    }catch(e){
+      console.log(e);
+    }
   }
+
   return (
     <ThemedView style={styles.container}>
       <Spacer />

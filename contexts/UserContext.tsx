@@ -1,52 +1,56 @@
-import { Children, createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react"; // Import ReactNode
+import { account } from "@/utils/appwrite";
+import { ID, Models } from "appwrite";
+import { asyncHandler } from "@/utils/SafeAsync"; // Ensure this path is correct
 
-interface User {
-    id: string;
-    email: string;
-    // Add other user properties as needed
-  }
+type User = Models.User<Models.Preferences>;
   
-  // Define the context type
-  interface UserContextType {
+interface UserContextType {
     user: User | null;
     login: (email: string, password: string) => Promise<void>;
     register: (email: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
-  }
+}
 
-export const UserContext = createContext<UserContextType>(
-    {
-        user: null,
-        login: async (email: string, password: string) => { },
-        register: async (email: string, password: string) => { },
-        logout: async () => { }
-    }
-)
+export const UserContext = createContext<UserContextType>({
+    user: null,
+    // Provide async stubs that match the signature
+    login: async () => { console.warn("Login function not yet implemented in context default"); },
+    register: async () => { console.warn("Register function not yet implemented in context default"); },
+    logout: async () => { console.warn("Logout function not yet implemented in context default"); }
+});
 
 type UserProviderProps = {
-    children: React.ReactNode;
+    children: ReactNode; // Use ReactNode directly
 }
 
 export function UserProvider({ children }: UserProviderProps) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null); // Typed useState
 
-    async function login(email: string, password: string) {
-        // login logic
-        
-    }
+    // Wrapped login function
+    const login = asyncHandler(async (email: string, password: string) => {
+        await account.createEmailPasswordSession(email, password);
+        const response = await account.get();
+        setUser(response);
+    });
 
-    async function register(email:string, password:string) {
-        // register logic
-    }
+    // Wrapped register function (Optimized)
+    const register = asyncHandler(async (email: string, password: string) => {
+        console.log("Registering user...");
+        await account.create(ID.unique(), email, password);
+        console.log("User registered successfully");
+        await login(email, password);
+    });
 
-    async function logout() {
-        // logout logic
-    }
-
+    // Wrapped logout function
+    const logout = asyncHandler(async () => {
+        await account.deleteSession('current');
+        setUser(null);
+        // console.log("User logged out");
+    });
     
-
     return (
-        <UserContext.Provider value={{ user, login, register, logout }} >
+        <UserContext.Provider value={{ user, login, register, logout }}>
             {children}
         </UserContext.Provider>
     );

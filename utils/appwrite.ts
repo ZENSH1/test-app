@@ -1,9 +1,8 @@
-import { Client, Account, Avatars } from 'react-native-appwrite';
+import { Client, Account, Avatars } from 'appwrite';
 
 export const client = new Client()
     .setEndpoint('https://fra.cloud.appwrite.io/v1')
-    .setProject('6820f36d000ab3854cb4')
-    .setPlatform('com.xiontrials123.notesapp');
+    .setProject('6820f36d000ab3854cb4');
 
 export const account = new Account(client);
 
