@@ -18,6 +18,7 @@ const Register = () => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const { user, register } = useUser();
+  const [error, setError] = React.useState('');
 
   const router = useRouter();
   
@@ -37,9 +38,10 @@ const Register = () => {
 
     // Call the register function from useUser
     try{
-      register(email, password);
+      await register(email, password);
     }catch(e){
-      console.log(e);
+      console.log("error came");
+      setError(e instanceof Error ? e.message : 'An error occurred');
     }
   }
 
@@ -95,9 +97,10 @@ const Register = () => {
       <ThemedButton onPress={handleSubmit}>
         <ThemedText style={{ textAlign: 'center' }}>Register</ThemedText>
       </ThemedButton>
+<Spacer height={10} />
+      <ThemedText style={{ color: 'red' }}>Error is : {error}</ThemedText>
 
-
-      <Spacer height={50} />
+      <Spacer height={20} />
       <ThemedButton onPress={moveToLogin}>
         <ThemedText style={{ textAlign: 'center' }}>Login instead</ThemedText>
       </ThemedButton>
