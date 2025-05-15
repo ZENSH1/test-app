@@ -3,7 +3,15 @@ import { account } from "@/utils/appwrite";
 import { ID, Models } from "appwrite";
 import { asyncHandler } from "@/utils/SafeAsync"; // Ensure this path is correct
 
-type User = Models.User<Models.Preferences>;
+export type User = Models.User<Models.Preferences>;
+
+export const apiStates = {
+  idle: 'idle',
+  loading: 'loading',
+  success: 'success',
+}
+
+
 
 interface UserContextType {
   user: User | null;
@@ -24,6 +32,7 @@ export const UserContext = createContext<UserContextType>({
   logout: async () => {
     console.warn("Logout function not yet implemented in context default");
   },
+
 });
 
 type UserProviderProps = {
@@ -33,10 +42,14 @@ type UserProviderProps = {
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null); // Typed useState
 
+  //This works but is not the best way to do it, 
+  
+
   // Wrapped login function
   const login = asyncHandler(async (email: string, password: string) => {
+
     var session = await account.get().catch(() => null);
-    if (session) {
+    if (false) {
       console.log("User is already logged in");
     } else {
       await account.createEmailPasswordSession(email, password);
@@ -63,7 +76,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
 
   return (
-    <UserContext.Provider value={{ user, login, register, logout }}>
+    <UserContext.Provider value={{ user, login, register, logout  }}>
       {children}
     </UserContext.Provider>
   );

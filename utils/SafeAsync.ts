@@ -2,6 +2,21 @@ type AsyncFunction<T extends any[]> = (...args: T) => Promise<void>;
 type ErrorHandler = (error: unknown) => void;
 type SyncFunction<T extends any[], R = void> = (...args: T) => R;
 
+type ApiResponse<T> = {
+  success: {
+    data: T;
+    message: string;
+  }
+  failure: {
+    data: null;
+    message: string;
+  }
+  loading: {
+    data: null;
+    message: string;
+  }
+}
+
 export function asyncHandler<T extends any[]>(
   fn: AsyncFunction<T>, 
   errorHandler?: ErrorHandler
