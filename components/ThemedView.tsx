@@ -21,15 +21,16 @@ const ThemedView: React.FC<ThemedViewProps> = ({ style, safe = false, ...props }
     );
 
     const insets = useSafeAreaInsets();
+    console.log(insets); //obviously gotta be safe here to
 
     return (
-        <View style={[{     
+        <View style={[style,{     
             backgroundColor: theme.background ,
-            paddingTop: insets.top,
+            paddingTop: 0,
             paddingBottom: insets.bottom,
             paddingLeft: insets.left,
             paddingRight: insets.right,
-        }, style]} {...props} />
+        }]} {...props} />
     )
 };
 

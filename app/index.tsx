@@ -46,6 +46,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 15,
   },
   text: {
     fontSize: 20,
