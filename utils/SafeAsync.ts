@@ -25,7 +25,6 @@ export function asyncHandler<T extends any[]>(
     try {
       await fn(...args);
     } catch (error) {
-      console.log("An error gotten");
       (errorHandler || defaultErrorHandler)(error);
       console.log("An error thrown");
       throw error; // Re-throw the error to propagate it to the caller if needed
@@ -49,5 +48,5 @@ export function syncHandler<T extends any[], R = void>(
 
 function defaultErrorHandler(error: unknown) {
   //throw error message with error 
-  throw error;
+  console.error(error);
 }

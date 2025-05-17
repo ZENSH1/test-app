@@ -59,7 +59,7 @@ export function UserProvider({ children }: UserProviderProps) {
     setUser(session);
   });
 
-  // Wrapped register function (Optimized)
+  // Wrapped register function (Optimized)` 
   const register = asyncHandler(async (email: string, password: string) => {
     console.log("Registering user...");
     await account.create(ID.unique(), email, password);
@@ -71,7 +71,7 @@ export function UserProvider({ children }: UserProviderProps) {
   const logout = asyncHandler(async () => {
     await account.deleteSession("current");
     setUser(null);
-    // console.log("User logged out");
+    console.log("User logged out");
   });
 
 

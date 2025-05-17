@@ -14,6 +14,7 @@ const ThemedButton: React.FC<ThemedButtonProps> = ({ style, ...props }) => {
                 pressed && styles.pressed,
                 style,
             ]}
+            
             {...props}
         />
     );
