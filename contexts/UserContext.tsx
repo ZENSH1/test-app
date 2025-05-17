@@ -15,6 +15,7 @@ export const apiStates = {
 
 interface UserContextType {
   user: User | null;
+  authCheck:boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -22,6 +23,7 @@ interface UserContextType {
 
 export const UserContext = createContext<UserContextType>({
   user: null,
+  authCheck:false, // Initialize with a default value, or null if you don't need aut
   // Provide async stubs that match the signature
   login: async () => {
     console.warn("Login function not yet implemented in context default");
@@ -41,6 +43,7 @@ type UserProviderProps = {
 
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null); // Typed useState
+  const [authCheck,setAuthCheck] = useState(false);
 
   //This works but is not the best way to do it, 
   
@@ -49,7 +52,7 @@ export function UserProvider({ children }: UserProviderProps) {
   const login = asyncHandler(async (email: string, password: string) => {
 
     var session = await account.get().catch(() => null);
-    if (false) {
+    if (session) {
       console.log("User is already logged in");
     } else {
       await account.createEmailPasswordSession(email, password);
@@ -73,10 +76,24 @@ export function UserProvider({ children }: UserProviderProps) {
     setUser(null);
     console.log("User logged out");
   });
+  async function getUser() {
 
+    const session = await account.get().catch(() => null);
+    if (session) {
+      console.log("UserID: ", session.$id);
+      setUser(session);
+    }
+    console.log("State Done");
+    setAuthCheck(true);
+  }
+
+  //intial state loading
+  useEffect(() => {
+    getUser()
+  }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, register, logout  }}>
+    <UserContext.Provider value={{ user, login, register, logout, authCheck  }}>
       {children}
     </UserContext.Provider>
   );

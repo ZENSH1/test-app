@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image } from "react-native";
+import { StyleSheet, Text, View,Image, ActivityIndicator } from "react-native";
 import {Link} from "expo-router";
 import { myImages } from "@/constants/images";
 import ThemedCard from "@/components/ThemedCard";
@@ -7,8 +7,20 @@ import ThemedLogo from "@/components/ThemedLogo";
 import ThemedView from "@/components/ThemedView";
 import Spacer from "@/components/Spacer";
 import { Colors } from "@/constants/Colors";
+import useUser from "@/hooks/useUser";
 
 const Home = () => {
+  const { authCheck, user} = useUser();
+
+  if (!authCheck) {
+    return (
+      <ThemedView style={[styles.container, styles.centered]} safe={true}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+        <Spacer height={10} />
+        <ThemedText>Getting data, please wait...</ThemedText>
+      </ThemedView>
+    );
+  }
   return (
     <ThemedView style={styles.container} safe={true}>
       
@@ -21,14 +33,16 @@ const Home = () => {
         />
         <ThemedText style={styles.text}>This is a simple Expo Router app.</ThemedText>
         <ThemedText style={styles.text}>Welcome to Expo Router!</ThemedText>
-        <ThemedText style={styles.text}>To get started, edit app/index.tsx</ThemedText>
+        <ThemedText style={styles.text}>
+          {user?.email ? `${user.email} is Logged in` : 'You are not logged in'}
+        </ThemedText>
       </ThemedCard>
       <Spacer height={20} />
-      <Link href="/login" style={styles.button}>
+      {(!user) && <Link href="/login" style={styles.button}>
         <ThemedText>
           Go to Login
         </ThemedText>
-      </Link>
+      </Link>}
       <Spacer height={20} />
       <Link href="/books" style={styles.button}>
         <ThemedText>
@@ -79,5 +93,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  centered: { // Added for centering loading indicator
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -26,7 +26,7 @@ const ThemedView: React.FC<ThemedViewProps> = ({ style, safe = false, ...props }
     return (
         <View style={[style,{     
             backgroundColor: theme.background ,
-            paddingTop: 0,
+            paddingTop: insets.top,
             paddingBottom: insets.bottom,
             paddingLeft: insets.left,
             paddingRight: insets.right,

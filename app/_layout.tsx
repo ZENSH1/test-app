@@ -10,7 +10,7 @@ export default function RootLayout() {
   const theme = Colors[colorScheme ?? "light"]; //obviously gotta be safe here
   return  <SafeAreaProvider>
   <UserProvider>
-  <StatusBar style="auto"/>
+  <StatusBar translucent={false} backgroundColor={theme.navBackground} style="auto"/>
   <Stack
   screenOptions={
     {

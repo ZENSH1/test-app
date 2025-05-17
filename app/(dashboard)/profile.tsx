@@ -22,9 +22,9 @@ const Profile = () => {
       <ThemedText>Time to start reading some books...</ThemedText>
       <Spacer />
 
-      <ThemedButton onPress={logout}>
+      {user && <ThemedButton onPress={logout}>
         <ThemedText>Logout</ThemedText>
-      </ThemedButton>
+      </ThemedButton>}
 
     </ThemedView>
   )
