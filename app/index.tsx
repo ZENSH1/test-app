@@ -14,7 +14,7 @@ const Home = () => {
 
   if (!authCheck) {
     return (
-      <ThemedView style={[styles.container, styles.centered]} safe={true}>
+      <ThemedView style={[styles.container, styles.centered]}>
         <ActivityIndicator size="large" color={Colors.primary} />
         <Spacer height={10} />
         <ThemedText>Getting data, please wait...</ThemedText>
@@ -22,7 +22,7 @@ const Home = () => {
     );
   }
   return (
-    <ThemedView style={styles.container} safe={true}>
+    <ThemedView style={styles.container}>
       
       <ThemedText style={styles.homeTitle}>Home</ThemedText>
 

@@ -6,12 +6,14 @@ import ThemedText from "../../components/ThemedText"
 import ThemedView from "../../components/ThemedView"
 import useUser from '@/hooks/useUser'
 import ThemedButton from '@/components/ThemedButton'
+import UserOnly from '@/components/auth/UserOnly'
 
 
 const Profile = () => {
   const {user, logout} = useUser()
 
   return (
+    <UserOnly>
     <ThemedView style={styles.container}>
 
       <ThemedText title={true} style={styles.heading}>
@@ -27,6 +29,7 @@ const Profile = () => {
       </ThemedButton>}
 
     </ThemedView>
+    </UserOnly>
   )
 }
 
