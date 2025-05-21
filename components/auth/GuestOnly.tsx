@@ -6,6 +6,7 @@ import ThemedText from "../ThemedText";
 import { ActivityIndicator, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
 import Spacer from "../Spacer";
+import Loader from "../Loader";
 
 interface GuestOnlyProps {
   children: React.ReactNode;
@@ -26,17 +27,13 @@ const GuestOnly = ({ children, redirectTo = "/(dashboard)/profile" }: GuestOnlyP
   // Show loading indicator while authCheck is in progress
   if (!authCheck) {
     return (
-      <ThemedView style={[styles.container, styles.centered]} safe={true}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-        <Spacer height={10} />
-        <ThemedText>Loading...</ThemedText>
-      </ThemedView>
+      <Loader />
     );
   }
 
   // If auth check is complete and there is no user, show children
   if (authCheck && !user) {
-    return <>{children}</>; // Use React Fragment to avoid adding an extra View
+    return children; // Use React Fragment to avoid adding an extra View
   }
 
   // Otherwise (e.g., during redirection or if logic is somehow bypassed), render nothing or a minimal loader

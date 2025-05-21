@@ -7,6 +7,7 @@ import ThemedText from "../ThemedText";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Colors } from "@/constants/Colors";
 import Spacer from "../Spacer";
+import Loader from "../Loader";
 
 const UserOnly = ({ children }: { children: React.ReactNode }) => {
   const { user, authCheck } = useUser();
@@ -19,11 +20,7 @@ const UserOnly = ({ children }: { children: React.ReactNode }) => {
   }, [user, authCheck]);
 
   return (authCheck && user) ? children : 
-    <ThemedView style={[styles.container, styles.centered]} safe={true}>
-      <ActivityIndicator size="large" color={Colors.primary} />
-      <Spacer height={10} />
-      <ThemedText>Getting data, please wait...</ThemedText>
-    </ThemedView>
+    <Loader/>
   ; // Return null if authCheck is fals
 };
 
